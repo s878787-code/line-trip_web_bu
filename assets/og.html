@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  :root{--cab:#FFB23E;--ink:#141008;--cond:"Barlow Condensed",sans-serif;--font:"Noto Sans TC",sans-serif}
+  body{position:relative;background:var(--cab);color:var(--ink);font-family:var(--font)}
+  /* 上下計程車格紋帶 */
+  .checker{position:absolute;left:0;right:0;height:26px;background:repeating-conic-gradient(var(--ink) 0% 25%,var(--cab) 0% 50%) 0 0/26px 26px}
+  .checker.top{top:0}.checker.bot{bottom:0}
+  .pad{position:absolute;inset:26px 0;display:flex;align-items:center}
+  .left{flex:1;padding:0 0 0 72px}
+  .right{width:396px;display:flex;align-items:center;justify-content:center}
+
+  .brand{display:flex;align-items:center;gap:16px;margin-bottom:30px}
+  .brand img{width:66px;height:66px;border-radius:15px;box-shadow:6px 6px 0 rgba(20,16,8,.28)}
+  .brand .wm{font-weight:900;font-size:34px;letter-spacing:-.01em}
+  .brand .sub{font-size:17px;font-weight:700;color:#4A3708;letter-spacing:.02em;margin-top:2px}
+
+  .kicker{display:inline-block;background:var(--ink);color:var(--cab);font-weight:900;font-size:20px;
+    padding:9px 20px;border-radius:999px;box-shadow:5px 5px 0 rgba(20,16,8,.22);margin-bottom:24px}
+  h1{font-weight:900;font-size:70px;line-height:1.08;letter-spacing:-.02em}
+  h1 .u{background:var(--ink);color:var(--cab);padding:0 10px;border-radius:6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .desc{margin-top:26px;font-size:24px;font-weight:700;color:#3A2C06}
+
+  .chips{display:flex;gap:14px;margin-top:34px}
+  .chip{background:var(--ink);color:var(--cab);font-weight:900;font-size:20px;padding:11px 20px;border-radius:10px;box-shadow:4px 4px 0 rgba(20,16,8,.22)}
+
+  /* 右側:黑框大 App icon 車頂招牌 */
+  .tile{width:300px;height:300px;border-radius:40px;background:var(--ink);display:flex;align-items:center;justify-content:center;
+    box-shadow:12px 12px 0 rgba(20,16,8,.25)}
+  .tile img{width:236px;height:236px;border-radius:30px}
+</style>
+</head>
+<body>
+  <div class="checker top"></div>
+  <div class="pad">
+    <div class="left">
+      <div class="brand">
+        <img src="app-icon.png" alt="">
+        <div><div class="wm">TripRadar</div><div class="sub">車趟雷達</div></div>
+      </div>
+      <span class="kicker">白牌司機的 AI 接單助手</span>
+      <h1>不用一直刷 LINE，<br>車趟<span class="u">直接送到你眼前</span></h1>
+      <div class="desc">自動抓 LINE 派單・整理距離與到達時間・一鍵回覆</div>
+      <div class="chips">
+        <span class="chip">前 100 名創始會員</span>
+        <span class="chip">一天約 NT$20</span>
+        <span class="chip">LINE @493watvi</span>
+      </div>
+    </div>
+    <div class="right">
+      <div class="tile"><img src="app-icon.png" alt=""></div>
+    </div>
+  </div>
+  <div class="checker bot"></div>
+</body>
+</html>

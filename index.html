@@ -238,6 +238,28 @@
   .meter .tab{position:absolute;top:-14px;left:22px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06231f;border-radius:7px;padding:5px 15px;font-size:12.5px;font-weight:800;box-shadow:0 8px 20px -6px rgba(45,212,191,.5)}
   .price-hint{max-width:640px;margin:36px auto 0;text-align:center;font-size:14px;color:var(--muted);font-weight:400;line-height:1.75}
   .price-hint b{color:var(--accent)}
+  /* 定價:主打年費 + 月費比較 */
+  .offer{max-width:470px;margin:44px auto 0;display:flex;flex-direction:column;gap:16px}
+  .offer-card{position:relative;background:linear-gradient(165deg,rgba(45,212,191,.14),rgba(20,30,36,.72));border:1.5px solid rgba(45,212,191,.6);border-radius:var(--r-lg);box-shadow:0 24px 60px -22px rgba(45,212,191,.35);padding:34px 26px 26px;display:flex;flex-direction:column;align-items:center;gap:13px;text-align:center;backdrop-filter:blur(8px)}
+  .offer-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06231f;border-radius:8px;padding:5px 16px;font-size:13px;font-weight:800;box-shadow:0 8px 20px -6px rgba(45,212,191,.5);white-space:nowrap}
+  .offer-name{font-weight:700;font-size:15px;color:var(--accent);letter-spacing:.02em}
+  .offer-price{display:flex;flex-direction:column;align-items:center;gap:3px}
+  .offer-now{font-family:var(--cond);font-weight:800;font-size:clamp(52px,11vw,64px);line-height:1;color:var(--accent);letter-spacing:-.02em}
+  .offer-orig{font-size:14px;color:var(--faint);text-decoration:line-through}
+  .offer-credit{display:inline-flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--muted)}
+  .offer-credit b{color:var(--text);font-weight:800;font-variant-numeric:tabular-nums}
+  .offer-arrow{color:var(--accent);font-weight:800}
+  .offer-day{font-size:13.5px;color:var(--muted)}
+  .offer-day b{color:var(--accent);font-weight:700}
+  .offer-card .btn{margin-top:6px;width:100%}
+  .offer-alt{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:13px 18px}
+  .offer-alt-txt{font-size:13px;color:var(--muted);line-height:1.65}
+  .offer-alt-txt b{color:var(--text);font-weight:700}
+  .offer-alt-nudge{color:var(--faint)}
+  .offer-alt-nudge b{color:var(--accent)}
+  .offer-alt-link{flex:none;color:var(--accent);font-weight:700;font-size:13.5px;white-space:nowrap}
+  .offer-alt-link:hover{text-decoration:underline}
+  @media(max-width:440px){.offer-alt{flex-direction:column;align-items:flex-start;gap:9px}}
 
   /* FAQ */
   .faq{max-width:740px;margin:44px auto 0}
@@ -477,35 +499,22 @@
       </div>
     </div>
 
-    <div class="ladder" aria-label="價格階梯:越晚加入越貴">
-      <a class="rung now" href="#contact" aria-label="立即加入創始會員，前 100 名首年 NT$7,990"><span>前 100 名・首年</span><span style="display:flex;align-items:center;gap:14px"><span class="price-sm num">NT$7,990</span><span class="when">現在 →</span></span></a>
-      <div class="rung"><span>第 101 名起・首年</span><span style="display:flex;align-items:center;gap:14px"><span class="price-sm num">NT$9,990</span><span class="when">售完後</span></span></div>
-      <div class="rung"><span>產品成熟後正式價</span><span style="display:flex;align-items:center;gap:14px"><span class="price-sm num">NT$11,990</span><span class="when">未來</span></span></div>
-    </div>
-
-    <div class="meters">
-      <div class="meter">
-        <span class="m-name">30 天體驗</span>
-        <span class="m-price num">599<small>元／30天</small></span>
-        <span class="m-day">平均一天約 NT$20</span>
-        <span class="m-per">完整功能・只收一次，不是月費。可全額折抵創始會員年費。</span>
-        <a class="btn btn-ink" href="#contact">先用 599 體驗</a>
-      </div>
-      <div class="meter hero-meter">
-        <span class="tab">前 100 名限定</span>
-        <span class="m-name">創始會員・首年</span>
-        <span class="m-orig num">正式價 NT$11,990</span>
-        <span class="m-price num" data-countup="7990">7,990<small>元／首年</small></span>
-        <span class="m-day">平均一天約 NT$22・折抵後約 NT$20</span>
-        <span class="m-per">已付 599 折抵後實際再付 NT$7,391。比正式價省 NT$4,000。</span>
+    <!-- 主打:創始會員年費 + 月費比較 -->
+    <div class="offer">
+      <div class="offer-card rise">
+        <span class="offer-tag">前 100 名限定</span>
+        <span class="offer-name">創始會員・首年</span>
+        <div class="offer-price">
+          <span class="offer-now num">NT$7,990</span>
+          <span class="offer-orig num">原價 NT$11,990</span>
+        </div>
+        <div class="offer-credit"><span>已付 <b class="num">599</b> 可折抵</span><span class="offer-arrow">→</span><span>實付只要 <b class="num">NT$7,391</b></span></div>
+        <span class="offer-day">平均一天約 <b>NT$22</b>・比正式價省 <b>NT$4,000</b></span>
         <a class="btn btn-cab" href="#contact">成為創始會員 →</a>
       </div>
-      <div class="meter">
-        <span class="m-name">月方案</span>
-        <span class="m-price num">1,299<small>元／月</small></span>
-        <span class="m-day">平均一天約 NT$43</span>
-        <span class="m-per">短期彈性，隨時可轉創始年費。</span>
-        <a class="btn btn-ink" href="#contact">選擇月方案</a>
+      <div class="offer-alt">
+        <p class="offer-alt-txt"><b>不想年繳？</b>也可以月繳 <span class="num">NT$1,299</span>／月（約一天 43 元）。<span class="offer-alt-nudge">但年費平均一天才 <b>22 元</b>，長期省很多。</span></p>
+        <a class="offer-alt-link" href="#contact">改月繳 →</a>
       </div>
     </div>
 

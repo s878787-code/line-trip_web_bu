@@ -109,21 +109,36 @@
   .phone-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative}
   .phone-wrap::before{content:"";position:absolute;width:340px;height:340px;background:radial-gradient(circle,rgba(45,212,191,.2),transparent 70%);filter:blur(34px);z-index:0}
   .phone{position:relative;z-index:1;width:min(300px,80vw);border-radius:34px;padding:10px;background:linear-gradient(160deg,#141d24,#0b0f14);border:1px solid var(--line2);box-shadow:0 30px 70px -24px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
-  /* 模擬派單畫面(非實機) */
+  /* 模擬派單畫面(非實機・加強動畫) */
   .phone-screen{border-radius:26px;overflow:hidden;background:#0D0F13;position:relative;height:540px;border:1px solid rgba(255,255,255,.05)}
-  .chat-head{background:#12171d;padding:15px 16px 12px;font-size:14.5px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
-  .chat-head span{color:var(--faint);font-weight:400;font-size:12px}
-  .chat{padding:16px 13px;display:flex;flex-direction:column;gap:10px}
-  .msg{max-width:87%;background:#191D23;border-radius:4px 12px 12px 12px;padding:9px 13px;font-size:13px;color:var(--muted);opacity:0;transform:translateY(12px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
+  .chat-head{background:#12171d;padding:15px 16px 12px;font-size:14.5px;font-weight:700;color:var(--text);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);position:relative;z-index:4}
+  .ch-name{display:flex;align-items:center;gap:8px}
+  .live{width:8px;height:8px;border-radius:50%;background:var(--accent);position:relative;flex:none;box-shadow:0 0 8px var(--accent)}
+  .live::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:live 1.8s ease-out infinite}
+  @keyframes live{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.4);opacity:0}}
+  .chat-head .mem{color:var(--faint);font-weight:400;font-size:12px}
+  .chat{padding:16px 13px;display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+  .msg{position:relative;max-width:87%;background:#191D23;border-radius:4px 12px 12px 12px;padding:9px 13px;font-size:13px;color:var(--muted);opacity:0;transform:translateY(12px);transition:opacity .4s var(--ease),transform .4s var(--ease)}
   .msg .who{font-size:11px;color:#5c646c;display:block;margin-bottom:2px;font-weight:600}
   .msg.on{opacity:.5;transform:none}
   .msg.dispatch{color:var(--text);border:1px solid transparent;background:#1E242B}
   .msg.dispatch.on{opacity:1}
   .msg.dispatch.hit{border-color:var(--accent);box-shadow:0 0 0 3px rgba(45,212,191,.16);background:#16302c}
-  .sweep{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:conic-gradient(from 0deg at 50% 50%,rgba(45,212,191,.30) 0deg,rgba(45,212,191,.06) 40deg,transparent 60deg,transparent 360deg);-webkit-mask:radial-gradient(circle at 50% 50%,#000 62%,transparent 63%);mask:radial-gradient(circle at 50% 50%,#000 62%,transparent 63%)}
-  .sweep.on{opacity:1;animation:sweep 1.6s linear}
-  @keyframes sweep{from{transform:rotate(0)}to{transform:rotate(720deg)}}
-  .tripcard{position:absolute;left:11px;right:11px;bottom:11px;background:linear-gradient(158deg,rgba(20,34,38,.96),rgba(12,20,24,.98));border:1px solid rgba(45,212,191,.5);border-radius:18px;padding:15px;transform:translateY(120%);transition:transform .55s var(--ease);box-shadow:0 -14px 46px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:2}
+  .ping{position:absolute;left:15px;top:50%;width:9px;height:9px;margin-top:-4px;border-radius:50%;background:var(--accent);opacity:0;pointer-events:none}
+  .ping.on{animation:ping 1.3s ease-out}
+  @keyframes ping{0%{opacity:.9;box-shadow:0 0 0 0 rgba(45,212,191,.55)}100%{opacity:0;box-shadow:0 0 0 32px rgba(45,212,191,0)}}
+  .scanline{position:absolute;left:0;right:0;top:0;height:72px;pointer-events:none;z-index:2;opacity:0;background:linear-gradient(180deg,transparent,rgba(45,212,191,.07) 55%,rgba(45,212,191,.2));border-bottom:1px solid rgba(45,212,191,.4);animation:scanline 3.4s ease-in-out infinite}
+  @keyframes scanline{0%{transform:translateY(-74px);opacity:0}10%{opacity:.55}48%{transform:translateY(432px);opacity:.5}60%,100%{transform:translateY(432px);opacity:0}}
+  .sweep{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:2;background:conic-gradient(from 0deg at 50% 50%,rgba(45,212,191,.34) 0deg,rgba(45,212,191,.06) 40deg,transparent 60deg,transparent 360deg);-webkit-mask:radial-gradient(circle at 50% 50%,#000 62%,transparent 63%);mask:radial-gradient(circle at 50% 50%,#000 62%,transparent 63%)}
+  .sweep.on{opacity:1;animation:sweep 1.4s linear infinite}
+  @keyframes sweep{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  .reco{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%) scale(.9);background:rgba(9,18,20,.94);border:1px solid rgba(45,212,191,.45);color:var(--accent);border-radius:999px;padding:8px 16px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:7px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 10px 34px rgba(0,0,0,.55);z-index:3;white-space:nowrap}
+  .reco.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  .reco .d{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:recod 1s infinite}
+  .reco .d:nth-child(2){animation-delay:.15s}
+  .reco .d:nth-child(3){animation-delay:.3s}
+  @keyframes recod{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+  .tripcard{position:absolute;left:11px;right:11px;bottom:11px;background:linear-gradient(158deg,rgba(20,34,38,.96),rgba(12,20,24,.98));border:1px solid rgba(45,212,191,.5);border-radius:18px;padding:15px;transform:translateY(120%);transition:transform .55s var(--ease);box-shadow:0 -14px 46px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);z-index:6}
   .tripcard.on{transform:none}
   .tc-top{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:9px}
   .badge{background:var(--accent-soft);color:var(--accent);border-radius:7px;padding:3px 9px;font-weight:700;border:1px solid rgba(45,212,191,.3)}
@@ -133,11 +148,13 @@
   .tc-meta{font-size:12px;color:var(--muted);margin-bottom:11px}
   .tc-meta b{color:var(--text)}
   .tc-btns{display:flex;gap:7px}
-  .tc-btns button{flex:1;background:#1b2530;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 0;font-size:13.5px;font-weight:700;font-family:var(--font);transition:.2s;pointer-events:none}
+  .tc-btns button{position:relative;overflow:hidden;flex:1;background:#1b2530;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 0;font-size:13.5px;font-weight:700;font-family:var(--font);transition:.2s;pointer-events:none}
   .tc-btns button.tap{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06231f;transform:scale(1.05);border-color:transparent}
-  .replybub{position:absolute;right:13px;bottom:236px;z-index:5;max-width:78%;background:var(--green);color:#04240f;border-radius:15px 5px 15px 15px;padding:9px 13px;font-size:13px;font-weight:700;opacity:0;transform:translateY(10px) scale(.92);transition:all .4s var(--ease);box-shadow:0 8px 24px rgba(6,199,85,.3)}
+  .tc-btns button.tap::after{content:"";position:absolute;left:50%;top:50%;width:130%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.6),transparent 60%);opacity:0;animation:ripple .55s ease-out}
+  @keyframes ripple{0%{opacity:.55;transform:translate(-50%,-50%) scale(.2)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}}
+  .replybub{position:absolute;right:13px;bottom:236px;z-index:7;max-width:78%;background:var(--green);color:#04240f;border-radius:15px 5px 15px 15px;padding:9px 13px;font-size:13px;font-weight:700;opacity:0;transform:translateY(10px) scale(.92);transition:all .4s var(--ease);box-shadow:0 8px 24px rgba(6,199,85,.3)}
   .replybub.on{opacity:1;transform:none}
-  .replybub small{display:block;font-weight:400;font-size:10px;opacity:.85;margin-top:1px}
+  .replybub small{display:block;font-weight:400;font-size:10px;opacity:.85;margin-top:1px;transition:opacity .2s}
   .phone-cap{font-size:13.5px;font-weight:500;color:var(--faint)}
 
   /* 痛點 */
@@ -320,30 +337,32 @@
     <div class="phone-wrap rise">
       <div class="phone" id="demo" aria-label="TripRadar 運作演示：LINE 群組訊息自動被辨識並整理成車趟卡片">
         <div class="phone-screen">
-          <div class="chat-head">北區派單群 3 <span>成員 187</span></div>
+          <div class="chat-head"><span class="ch-name"><span class="live" aria-hidden="true"></span>北區派單群 3</span><span class="mem">成員 187</span></div>
           <div class="chat">
             <div class="msg" data-t="0"><span class="who">管理員</span>【公告】本週費率調整說明，請各位司機詳閱…</div>
             <div class="msg" data-t="1"><span class="who">小黑</span>收到</div>
             <div class="msg" data-t="2"><span class="who">阿良</span>謝派 已到</div>
-            <div class="msg dispatch" data-t="3"><span class="who">派單-阿德</span>三重 重新路五段609巷 到 台北車站 現金</div>
+            <div class="msg dispatch" data-t="3"><span class="ping" id="ping" aria-hidden="true"></span><span class="who">派單-阿德</span>三重 重新路五段609巷 到 台北車站 現金</div>
             <div class="msg" data-t="4"><span class="who">小胖</span>今天有人跑機場嗎？</div>
           </div>
+          <div class="scanline" aria-hidden="true"></div>
           <div class="sweep" id="sweep" aria-hidden="true"></div>
-          <div class="replybub" id="reply">@派單-阿德 重新路 5分<small>已自動標記派單人・帶入回覆</small></div>
+          <div class="reco" id="reco" aria-hidden="true"><span class="d"></span><span class="d"></span><span class="d"></span>TripRadar 辨識中</div>
+          <div class="replybub" id="reply">@派單-阿德 重新路 5分<small id="replystatus">傳送中…</small></div>
           <div class="tripcard" id="card">
             <div class="tc-top"><span class="badge">⚡ 即時</span><span class="tc-src">北區派單群 3・派單-阿德</span></div>
             <div class="tc-route">
               <span><i>上車</i>三重區重新路五段609巷</span>
               <span><i>下車</i>台北車站</span>
             </div>
-            <div class="tc-meta">距離 <b class="num">2.1 km</b>・預估 <b class="num">6 分</b>到達・現金</div>
+            <div class="tc-meta">距離 <b class="num" id="dist">2.1 km</b>・預估 <b class="num" id="eta">6 分</b>到達・現金</div>
             <div class="tc-btns">
               <button id="tapbtn" type="button">5分</button><button type="button">10分</button><button type="button">15分</button><button type="button">自訂</button>
             </div>
           </div>
         </div>
       </div>
-      <p class="phone-cap">模擬示意：訊息進來 → 自動抓單 → 點分鐘 → 跳回群組完成回覆</p>
+      <p class="phone-cap">模擬示意：訊息進來 → 雷達辨識 → 點分鐘 → 跳回群組完成回覆</p>
     </div>
   </div>
 </section>
@@ -703,26 +722,42 @@ document.querySelectorAll(".copy").forEach(b=>b.addEventListener("click",()=>{
 }));
 </script>
 <script>
-/* 模擬派單畫面動畫序列 */
+/* 模擬派單畫面動畫序列(加強版) */
 (function(){
   const demo=document.getElementById("demo"); if(!demo) return;
+  const id=x=>document.getElementById(x);
   const msgs=demo.querySelectorAll(".msg"), dispatch=demo.querySelector(".dispatch");
-  const sweep=document.getElementById("sweep"),card=document.getElementById("card"),reply=document.getElementById("reply"),tap=document.getElementById("tapbtn");
+  const sweep=id("sweep"),card=id("card"),reply=id("reply"),tap=id("tapbtn"),ping=id("ping"),reco=id("reco"),rstat=id("replystatus"),dist=id("dist"),eta=id("eta");
   const timers=[],at=(ms,fn)=>timers.push(setTimeout(fn,ms));
+  let raf=0;
+  function countUp(el,target,unit,dur,dec){
+    const t0=performance.now();
+    (function tick(now){
+      const p=Math.min(1,(now-t0)/dur);
+      el.textContent=(target*p).toFixed(dec)+unit;
+      if(p<1) raf=requestAnimationFrame(tick);
+    })(t0);
+  }
+  function pulse(el,cls){el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);}
   function run(){
-    timers.forEach(clearTimeout); timers.length=0;
+    timers.forEach(clearTimeout); timers.length=0; if(raf) cancelAnimationFrame(raf);
     msgs.forEach(m=>m.classList.remove("on","hit"));
-    sweep.classList.remove("on");card.classList.remove("on");reply.classList.remove("on");tap.classList.remove("tap");
+    [sweep,card,reply,ping,reco].forEach(e=>e.classList.remove("on"));
+    tap.classList.remove("tap");
+    rstat.textContent="傳送中…"; dist.textContent="0.0 km"; eta.textContent="0 分";
     msgs.forEach(m=>at(400+(+m.dataset.t)*550,()=>m.classList.add("on")));
     at(3400,()=>sweep.classList.add("on"));
-    at(4300,()=>dispatch.classList.add("hit"));
-    at(5000,()=>{sweep.classList.remove("on");card.classList.add("on")});
-    at(6300,()=>tap.classList.add("tap"));
+    at(4200,()=>{dispatch.classList.add("hit"); pulse(ping,"on");});
+    at(4400,()=>reco.classList.add("on"));
+    at(5200,()=>{sweep.classList.remove("on"); reco.classList.remove("on"); card.classList.add("on"); countUp(dist,2.1," km",900,1); countUp(eta,6," 分",900,0);});
+    at(6400,()=>pulse(tap,"tap"));
     at(7000,()=>reply.classList.add("on"));
-    at(10500,run);
+    at(7800,()=>rstat.textContent="✓ 已送出・已標記派單人");
+    at(11800,run);
   }
   if(matchMedia("(prefers-reduced-motion:reduce)").matches){
     msgs.forEach(m=>m.classList.add("on"));dispatch.classList.add("hit");card.classList.add("on");tap.classList.add("tap");reply.classList.add("on");
+    rstat.textContent="✓ 已送出・已標記派單人"; dist.textContent="2.1 km"; eta.textContent="6 分";
   }else{run();}
 })();
 </script>
